@@ -26,13 +26,13 @@ class WeatherETL:
 
     def extract_weather_data(self, cities):
         weather_data = []
+        # Latest data
         try:
             for city in cities:
                 url = f"{self.base_url}/weather/current/{city}"
                 response = requests.get(url)
                 if response.status_code == 200:
                     response_data = response.json()
-                    print(response_data)
                     if 'data' in response_data:
                         data = response_data['data']
                         weather_data.append({
